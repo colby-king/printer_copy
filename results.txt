@@ -1,0 +1,41 @@
+PS C:\Users\kingc5_adm\desktop\printer_copy> $results = ./printer_copy.ps1 -CopyFrom WINNGRALTPRD01
+Could not install driver: HP Officejet Pro X576 MFP PCL6 Class Driver
+Could not install driver: HP Officejet Pro X576 MFP PCL6 Class Driver
+PS C:\Users\kingc5_adm\desktop\printer_copy> $results | select name, DriverAdded, PortAdded, PrinterAdded, Errors | form
+at-table
+
+name                          DriverAdded PortAdded PrinterAdded Errors
+----                          ----------- --------- ------------ ------
+p5                                  False     False        False The specified driver does not exist in the driver s...
+p4                                   True      True         True
+p3                                   True      True         True
+p2                                   True      True         True
+p1                                  False     False        False The specified driver does not exist in the driver s...
+Microsoft XPS Document Writer        True     False        False
+
+
+PS C:\Users\kingc5_adm\desktop\printer_copy> $results = ./printer_copy.ps1 -CopyFrom MYPRINTServer
+Get-Printer : The spooler service is not reachable.  Ensure the spooler service is running.
+At C:\Users\kingc5_adm\desktop\printer_copy\printer_copy.ps1:4 char:13
++ $printers = Get-Printer -ComputerName $CopyFrom
++             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (MSFT_Printer:ROOT/StandardCimv2/MSFT_Printer) [Get-Printer], CimException
+    + FullyQualifiedErrorId : HRESULT 0x800706ba,Get-Printer
+
+Get-PrinterPort : Cannot validate argument on parameter 'Name'. The argument is null. Provide a valid value for the
+argument, and then try running the command again.
+At C:\Users\kingc5_adm\desktop\printer_copy\printer_copy.ps1:10 char:32
++ $ports = Get-PrinterPort -Name $printers.PortName -ComputerName "WINE ...
++                                ~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidData: (:) [Get-PrinterPort], ParameterBindingValidationException
+    + FullyQualifiedErrorId : ParameterArgumentValidationError,Get-PrinterPort
+
+PS C:\Users\kingc5_adm\desktop\printer_copy>
+
+
+
+
+
+
+
+
